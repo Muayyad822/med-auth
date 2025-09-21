@@ -36,13 +36,13 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-8">
             {/* Language Selector */}
-            <div className="relative">
+            <div className="flex items-center justify-between gap-2 relative">
               <select
                 value={currentLanguage}
                 onChange={(e) => onLanguageChange(e.target.value)}
-                className="bg-green-600 border border-green-500 rounded-lg px-3 py-2 text-white appearance-none cursor-pointer hover:bg-green-600 transition-colors"
+                className="bg-green-600 border border-green-500 rounded-lg px-6 py-2 text-white appearance-none cursor-pointer hover:bg-green-600 transition-colors"
               >
                 {languages.map(lang => (
                   <option key={lang.code} value={lang.code} className="bg-green-700">
@@ -50,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
                   </option>
                 ))}
               </select>
-              <Globe size={16} className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+              {/* <Globe size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none" /> */}
             </div>
 
             {/* Profile Button */}

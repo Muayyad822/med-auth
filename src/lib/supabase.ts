@@ -43,8 +43,57 @@ export const mockMedications = [
     status: 'counterfeit' as const,
     createdAt: '2024-01-03',
     updatedAt: '2024-01-03'
+  },
+  {
+    id: '4',
+    nafdacRegNumber: 'NAFDAC-004-2024',
+    name: 'Ciprofloxacin 500mg',
+    manufacturer: 'Medicare Pharma',
+    batchNumber: 'CIP500-2024-004',
+    expiryDate: '2026-05-20',
+    qrCode: 'MOCK_QR_3',
+    status: 'authentic' as const,
+    createdAt: '2024-01-04',
+    updatedAt: '2024-01-04'
+  },
+  {
+    id: '5',
+    nafdacRegNumber: 'FAKE-005-2024',
+    name: 'Fake Blood Tonic',
+    manufacturer: 'Unregistered Brand',
+    batchNumber: 'TONIC-FAKE-005',
+    expiryDate: '2026-09-10',
+    qrCode: 'FAKE_QR_2',
+    status: 'counterfeit' as const,
+    createdAt: '2024-01-05',
+    updatedAt: '2024-01-05'
+  },
+  {
+    id: '6',
+    nafdacRegNumber: 'NAFDAC-006-2024',
+    name: 'Azithromycin 250mg',
+    manufacturer: 'GlobalMed Nigeria',
+    batchNumber: 'AZI250-2024-006',
+    expiryDate: '2027-03-15',
+    qrCode: 'MOCK_QR_4',
+    status: 'authentic' as const,
+    createdAt: '2024-01-06',
+    updatedAt: '2024-01-06'
+  },
+  {
+    id: '7',
+    nafdacRegNumber: 'FAKE-007-2024',
+    name: 'Counterfeit Multivitamins',
+    manufacturer: 'Unknown',
+    batchNumber: 'MULTI-FAKE-007',
+    expiryDate: '2026-02-01',
+    qrCode: 'FAKE_QR_3',
+    status: 'counterfeit' as const,
+    createdAt: '2024-01-07',
+    updatedAt: '2024-01-07'
   }
 ];
+
 
 export const verifyMedication = async (qrCode: string) => {
   // Simulate API delay

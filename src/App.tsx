@@ -159,7 +159,7 @@ function App() {
 
         {/* Action Buttons */}
         {!verificationResult && !loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
             {/* QR Scanner */}
             <button
               onClick={() => setShowScanner(true)}
@@ -185,21 +185,21 @@ function App() {
             </button>
 
             {/* Education */}
-            <button className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow group">
+            {/* <button className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow group">
               <BookOpen size={48} className="mx-auto text-green-700 mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{t('education')}</h3>
               <p className="text-gray-600">
                 Learn how to identify counterfeit medications and stay safe
               </p>
-            </button>
+            </button> */}
           </div>
         )}
 
         {/* Features Grid */}
         {!verificationResult && !loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mb-8 text-center">
             {/* Statistics */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            {/* <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-gray-800 mb-4">
                 Verification Statistics
               </h3>
@@ -213,14 +213,14 @@ function App() {
                   <div className="text-sm text-gray-600">Counterfeit</div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Quick Tips */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold text-gray-800 mb-4">
                 Safety Tips
               </h3>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 flex flex-col items-center">
                 <li className="flex items-start gap-2">
                   <span className="text-green-700">•</span>
                   Always verify medications before use
@@ -287,7 +287,7 @@ function App() {
             Protecting Nigerian consumers from counterfeit medications
           </p>
           <p className="text-sm text-green-200">
-            In partnership with NAFDAC • © 2024 All rights reserved
+            Built by Team X © {new Date().getFullYear()} All rights reserved
           </p>
         </div>
       </footer>

@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
-      appName: "NAFDAC MedAuth",
+      appName: "VerifyMeds",
       scanQR: "Scan QR Code",
       searchMedication: "Search Medication",
       verifyMedication: "Verify Medication",
@@ -29,7 +29,7 @@ const resources = {
   },
   ha: {
     translation: {
-      appName: "NAFDAC MedAuth",
+      appName: "VerifyMeds",
       scanQR: "Duba QR Code",
       searchMedication: "Nemo Magani",
       verifyMedication: "Tabbatar da Magani",
@@ -54,7 +54,7 @@ const resources = {
   },
   yo: {
     translation: {
-      appName: "NAFDAC MedAuth",
+      appName: "VerifyMeds",
       scanQR: "Scan QR Code",
       searchMedication: "Wa Oogun",
       verifyMedication: "Daju Oogun",
@@ -79,7 +79,7 @@ const resources = {
   },
   ig: {
     translation: {
-      appName: "NAFDAC MedAuth",
+      appName: "VerifyMeds",
       scanQR: "Scan QR Code",
       searchMedication: "Chọọ Ọgwụ",
       verifyMedication: "Kwenye Ọgwụ",
