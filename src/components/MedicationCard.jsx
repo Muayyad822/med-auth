@@ -1,13 +1,8 @@
 import React from 'react';
 import { Shield, ShieldX, AlertTriangle, HelpCircle, Calendar, Building2, Hash } from 'lucide-react';
-import { Medication, VerificationResult } from '../types/medication';
 import { useTranslation } from 'react-i18next';
 
-interface MedicationCardProps {
-  result: VerificationResult;
-}
-
-export const MedicationCard: React.FC<MedicationCardProps> = ({ result }) => {
+const MedicationCard = ({ result }) => {
   const { t } = useTranslation();
   const { medication, status, confidence, message } = result;
 
@@ -68,7 +63,7 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({ result }) => {
         <div className="space-y-3">
           <h4 className="font-semibold text-gray-800">{t('medicationName')}</h4>
           <p className="text-lg font-bold text-gray-900">{medication.name}</p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div className="flex items-center gap-2">
               <Hash size={16} className="text-gray-500" />
@@ -77,7 +72,7 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({ result }) => {
                 <p className="font-semibold">{medication.nafdacRegNumber}</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <Building2 size={16} className="text-gray-500" />
               <div>
@@ -85,7 +80,7 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({ result }) => {
                 <p className="font-semibold">{medication.manufacturer}</p>
               </div>
             </div>
-            
+
             {medication.batchNumber && (
               <div className="flex items-center gap-2">
                 <Hash size={16} className="text-gray-500" />
@@ -95,7 +90,7 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({ result }) => {
                 </div>
               </div>
             )}
-            
+
             {medication.expiryDate && (
               <div className="flex items-center gap-2">
                 <Calendar size={16} className="text-gray-500" />
@@ -122,3 +117,5 @@ export const MedicationCard: React.FC<MedicationCardProps> = ({ result }) => {
     </div>
   );
 };
+
+export default MedicationCard;

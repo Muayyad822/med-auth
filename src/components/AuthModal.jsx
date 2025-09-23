@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import { X, User, Mail, Lock, UserCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-interface AuthModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSignIn: (email: string, password: string) => Promise<void>;
-  onSignUp: (email: string, password: string, name: string, role: string) => Promise<void>;
-}
-
-export const AuthModal: React.FC<AuthModalProps> = ({
+const AuthModal = ({
   isOpen,
   onClose,
   onSignIn,
@@ -28,7 +21,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -40,7 +33,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         await onSignIn(formData.email, formData.password);
       }
       onClose();
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message || 'An error occurred');
     } finally {
       setLoading(false);
@@ -167,8 +160,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               onClick={() => setIsSignUp(!isSignUp)}
               className="text-green-700 hover:text-green-600 text-sm"
             >
-              {isSignUp 
-                ? 'Already have an account? Sign in' 
+              {isSignUp
+                ? 'Already have an account? Sign in'
                 : "Don't have an account? Sign up"
               }
             </button>
@@ -178,3 +171,5 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     </div>
   );
 };
+
+export default AuthModal;

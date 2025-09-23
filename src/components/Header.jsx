@@ -2,16 +2,10 @@ import React from 'react';
 import { Shield, Globe, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-interface HeaderProps {
-  onLanguageChange: (lang: string) => void;
-  currentLanguage: string;
-  onProfileClick: () => void;
-}
-
-export const Header: React.FC<HeaderProps> = ({ 
-  onLanguageChange, 
-  currentLanguage, 
-  onProfileClick 
+const Header = ({
+  onLanguageChange,
+  currentLanguage,
+  onProfileClick
 }) => {
   const { t } = useTranslation();
 
@@ -23,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="bg-green-700 text-white shadow-lg">
+      <header className="bg-green-700 text-white shadow-lg">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
@@ -63,6 +57,8 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
       </div>
-    </header>
+      </header>
   );
 };
+
+export default Header;

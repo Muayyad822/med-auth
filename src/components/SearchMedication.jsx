@@ -3,16 +3,12 @@ import { Search, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { mockMedications } from '../lib/supabase';
 
-interface SearchMedicationProps {
-  onResult: (result: any) => void;
-}
-
-export const SearchMedication: React.FC<SearchMedicationProps> = ({ onResult }) => {
+const SearchMedication = ({ onResult }) => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (e: React.FormEvent) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchTerm.trim()) return;
 
@@ -21,7 +17,7 @@ export const SearchMedication: React.FC<SearchMedicationProps> = ({ onResult }) 
     // Simulate search delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    const medication = mockMedications.find(med => 
+    const medication = mockMedications.find(med =>
       med.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       med.nafdacRegNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (med.batchNumber && med.batchNumber.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -29,10 +25,10 @@ export const SearchMedication: React.FC<SearchMedicationProps> = ({ onResult }) 
 
     const result = {
       medication,
-      status: medication ? medication.status : 'unknown' as const,
+      status: medication ? medication.status : 'unknown',
       confidence: medication ? (medication.status === 'authentic' ? 95 : 90) : 0,
-      message: medication 
-        ? (medication.status === 'authentic' 
+      message: medication
+        ? (medication.status === 'authentic'
           ? 'Medication found and verified as authentic'
           : 'Warning: This medication has issues')
         : 'No medication found matching your search',
@@ -46,7 +42,7 @@ export const SearchMedication: React.FC<SearchMedicationProps> = ({ onResult }) 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">{t('searchMedication')}</h2>
-      
+
       <form onSubmit={handleSearch} className="space-y-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -58,7 +54,7 @@ export const SearchMedication: React.FC<SearchMedicationProps> = ({ onResult }) 
             className="w-full pl-10 pr-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
           />
         </div>
-        
+
         <button
           type="submit"
           disabled={loading || !searchTerm.trim()}
@@ -77,7 +73,7 @@ export const SearchMedication: React.FC<SearchMedicationProps> = ({ onResult }) 
           )}
         </button>
       </form>
-      
+
       <div className="mt-4 text-sm text-gray-600">
         <p>Search examples:</p>
         <ul className="list-disc list-inside mt-1 space-y-1">
@@ -89,3 +85,5 @@ export const SearchMedication: React.FC<SearchMedicationProps> = ({ onResult }) 
     </div>
   );
 };
+
+export default SearchMedication;

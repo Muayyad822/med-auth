@@ -1,16 +1,7 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { supabase } from '../lib/supabase';
-import { User } from '../types/medication';
 
-interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, name: string, role: string) => Promise<void>;
-  signOut: () => Promise<void>;
-}
-
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -21,20 +12,20 @@ export const useAuth = () => {
 };
 
 export const useAuthState = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user as any);
+      setUser(session?.user);
       setLoading(false);
     });
 
     // Listen for changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        setUser(session?.user as any);
+        setUser(session?.user);
         setLoading(false);
       }
     );
@@ -42,7 +33,7 @@ export const useAuthState = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email, password) => {
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -50,7 +41,7 @@ export const useAuthState = () => {
     if (error) throw error;
   };
 
-  const signUp = async (email: string, password: string, name: string, role: string) => {
+  const signUp = async (email, password, name, role) => {
     const { error } = await supabase.auth.signUp({
       email,
       password,

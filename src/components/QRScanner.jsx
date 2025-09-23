@@ -3,19 +3,14 @@ import { Camera, X, Flashlight, FlashlightOff } from 'lucide-react';
 import { BrowserMultiFormatReader } from '@zxing/browser';
 import { useTranslation } from 'react-i18next';
 
-interface QRScannerProps {
-  onScan: (result: string) => void;
-  onClose: () => void;
-}
-
-export const QRScanner: React.FC<QRScannerProps> = ({ onScan, onClose }) => {
+const QRScanner = ({ onScan, onClose }) => {
   const { t } = useTranslation();
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef(null);
   const codeReader = useRef(new BrowserMultiFormatReader());
   const [isScanning, setIsScanning] = useState(false);
   const [hasFlashlight, setHasFlashlight] = useState(false);
   const [flashlightOn, setFlashlightOn] = useState(false);
-  const [stream, setStream] = useState<MediaStream | null>(null);
+  const [stream, setStream] = useState(null);
 
   useEffect(() => {
     startScanner();
@@ -27,7 +22,7 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onScan, onClose }) => {
   const startScanner = async () => {
     try {
       setIsScanning(true);
-      
+
       const constraints = {
         video: {
           facingMode: 'environment', // Use back camera
@@ -38,7 +33,7 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onScan, onClose }) => {
 
       const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
       setStream(mediaStream);
-      
+
       // Check if flashlight is available
       const track = mediaStream.getVideoTracks()[0];
       const capabilities = track.getCapabilities();
@@ -46,7 +41,7 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onScan, onClose }) => {
 
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
-        
+
         codeReader.current.decodeFromVideoDevice(
           undefined,
           videoRef.current,
@@ -120,7 +115,7 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onScan, onClose }) => {
           playsInline
           className="w-full h-full object-cover"
         />
-        
+
         {/* Scanning Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
@@ -130,13 +125,13 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onScan, onClose }) => {
               <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-green-500"></div>
               <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-green-500"></div>
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-green-500"></div>
-              
+
               {/* Scanning line animation */}
               <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute w-full h-1 bg-green-500 opacity-75 animate-pulse"></div>
               </div>
             </div>
-            
+
             {/* Instructions */}
             <p className="text-white text-center mt-4 px-4">
               Position QR code within the frame
@@ -155,3 +150,5 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onScan, onClose }) => {
     </div>
   );
 };
+
+export default QRScanner;

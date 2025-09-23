@@ -1,6 +1,6 @@
 {
-  "name": "NAFDAC MedAuth",
-  "short_name": "MedAuth",
+  "name": "VerifyMeds", 
+  "short_name": "VerifyMeds",
   "description": "Nigerian Medication Authentication System",
   "theme_color": "#008751",
   "background_color": "#ffffff",
